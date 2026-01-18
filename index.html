@@ -1,14 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Network RunBook</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Runbook - Make-Believe Network Operations</title>
 </head>
 <body>
 
-  <h1>Break Glass in Case of Emergency</h1>
-  <p>If you're on this page, then you must be having a bad day with your Network.</p>
+  <h1>Network Runbook (Make-Believe Environment)</h1>
+  <p><strong>Document ID:</strong> RB-NET-001</p>
+  <p><strong>Owner:</strong> [Your Name / Team]</p>
+  <p><strong>Last Updated:</strong> [YYYY-MM-DD]</p>
+  <p><strong>Scope:</strong> This is a fictional runbook used for practice/training and does not represent a real production network.</p>
+
+  <hr>
+
+  <h2>1) Quick Summary</h2>
+  <ul>
+    <li><strong>Network Name:</strong> ACME Training Network</li>
+    <li><strong>Primary Site:</strong> HQ (Fictional)</li>
+    <li><strong>Core Services:</strong> DHCP, DNS, VPN, Wi-Fi, VLAN segmentation</li>
+    <li><strong>Critical Apps:</strong> [Placeholder: Ticketing, ERP, VoIP]</li>
+  </ul>
+
+  <h2>2) Contacts and Escalation</h2>
+  <ul>
+    <li><strong>Help Desk:</strong> [helpdesk@example.com] | [555-0100]</li>
+    <li><strong>Network On-Call:</strong> [oncall@example.com] | [555-0111]</li>
+    <li><strong>ISP Support:</strong> [ISP Support #] | [ISP Portal]</li>
+    <li><strong>Vendor Support:</strong> [Firewall Vendor #] | [Switch Vendor #]</li>
+  </ul>
+
+  <h3>Escalation Path</h3>
+  <ol>
+    <li>Help Desk Triage</li>
+    <li>Network Engineer (On-Call)</li>
+    <li>Senior Network Engineer / IT Manager</li>
+    <li>Vendor / ISP Escalation</li>
+  </ol>
+
+  <hr>
+
+  <h2>3) Network Diagram (Placeholder)</h2>
+  <p><strong>Insert diagram image here:</strong> [diagram.png]</p>
+  <p>High-level flow: ISP &rarr; Edge Firewall &rarr; Core Switch &rarr; Access Switches/Wi-Fi &rarr; VLANs/Servers</p>
+
+  <h2>4) IP Addressing and VLANs</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>VLAN</th>
+        <th>Name</th>
+        <th>Subnet</th>
+        <th>Gateway</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>10</td>
+        <td>Users</td>
+        <td>10.10.10.0/24</td>
+        <td>10.10.10.1</td>
+        <td>Workstations, laptops</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>Servers</td>
+        <td>10.10.20.0/24</td>
+        <td>10.10.20.1</td>
+        <td>AD/DNS/DHCP/App servers</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>Voice</td>
+        <td>10.10.30.0/24</td>
+        <td>10.10.30.1</td>
+        <td>VoIP phones (QoS enabled)</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>Guest Wi-Fi</td>
+        <td>10.10.40.0/24</td>
+        <td>10.10.40.1</td>
+        <td>Internet only, blocked from internal</td>
+      </tr>
+      <tr>
+        <td>99</td>
+        <td>Management</td>
+        <td>10.10.99.0/24</td>
+        <td>10.10.99.1</td>
+        <td>Switch/AP management, restricted access</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>5) Key Systems Inventory</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>System</th>
+        <th>Role</th>
+        <th>IP / Hostname</th>
+        <th>Location</th>
+        <th>Access Method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FW-EDGE-01</td>
+        <td>Edge Firewall</td>
+        <td>fw-edge-01 / 10.10.99.10</td>
+        <td>HQ MDF</td>
+        <td>HTTPS Admin / SSH</td>
+      </tr>
+      <tr>
+        <td>SW-CORE-01</td>
+        <td>Core Switch</td>
+        <td>sw-core-01 / 10.10.99.20</td>
+        <td>HQ MDF</td>
+        <td>SSH / Console</td>
+      </tr>
+      <tr>
+        <td>AP-CONTROLLER</td>
+        <td>Wi-Fi Controller</td>
+        <td>wifi-ctrl / 10.10.99.30</td>
+        <td>HQ MDF</td>
+        <td>HTTPS Admin</td>
+      </tr>
+      <tr>
+        <td>SRV-DNS-01</td>
+        <td>DNS</td>
+        <td>srv-dns-01 / 10.10.20.10</td>
+        <td>HQ Server Room</td>
+        <td>RDP / Console</td>
+      </tr>
+      <tr>
+        <td>SRV-DHCP-01</td>
+        <td>DHCP</td>
+        <td>srv-dhcp-01 / 10.10.20.11</td>
+        <td>HQ Server Room</td>
+        <td>RDP / Console</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>6) Standard Operating Procedures</h2>
+
+  <h3>6.1 Add a New VLAN (Change-Control Required)</h3>
+  <ol>
+    <li>Open change ticket: [Ticket #]</li>
+    <li>Define VLAN ID, subnet, gateway, DHCP scope requirements.</li>
+    <li>Create VLAN on core switch and required trunks.</li>
+    <li>Create firewall rules (allow/deny between VLANs).</li>
+    <li>Create DHCP scope (if needed) and confirm DNS registration.</li>
+    <li>Test: ping gateway, DNS resolve, internet access (if allowed).</li>
+    <li>Update documentation: VLAN table + diagram.</li>
+  </ol>
+
+  <h3>6.2 Add a Firewall Rule</h3>
+  <ol>
+    <li>Confirm business need and least-privilege requirement.</li>
+    <li>Identify source VLAN/IP, destination VLAN/IP, ports/protocols.</li>
+    <li>Implement rule with logging enabled.</li>
+    <li>Test connectivity from a test host.</li>
+    <li>Document: rule name, reason, ticket #, expiry (if temporary).</li>
+  </ol>
+
+  <h3>6.3 Rotate VPN Credentials (Quarterly)</h3>
+  <ol>
+    <li>Notify users: [Email Template Placeholder]</li>
+    <li>Generate new credentials / update MFA policy.</li>
+    <li>Revoke old credentials.</li>
+    <li>Validate remote login.</li>
+    <li>Close ticket with evidence (screenshots/log export).</li>
+  </ol>
+
+  <hr>
+
+  <h2>7) Troubleshooting Runbooks</h2>
+
+  <h3>7.1 Internet Outage (All Users)</h3>
+  <ol>
+    <li>Confirm scope: one user vs whole site.</li>
+    <li>Check edge firewall WAN status (link up? IP assigned?).</li>
+    <li>Ping tests (from firewall if possible):</li>
+    <ul>
+      <li>Ping ISP gateway: [ISP GW IP]</li>
+      <li>Ping public IP: 1.1.1.1</li>
+      <li>DNS test: resolve example.com</li>
+    </ul>
+    <li>Check logs for WAN down or authentication errors.</li>
+    <li>If WAN down: open ISP ticket and record ticket #.</li>
+    <li>Update status page / send internal comms: [Template Placeholder]</li>
+  </ol>
+
+  <h3>7.2 Users Can Ping But DNS Fails</h3>
+  <ol>
+    <li>Check DNS server health: SRV-DNS-01 availability.</li>
+    <li>From a client: confirm DNS server set correctly (DHCP options).</li>
+    <li>Test resolution using nslookup/dig against DNS server.</li>
+    <li>Check firewall rules for DNS (UDP/TCP 53) between VLANs.</li>
+    <li>If DNS service down: restart service, review event logs.</li>
+    <li>Document incident and root cause.</li>
+  </ol>
+
+  <h3>7.3 Wi-Fi Guests Can’t Get Internet</h3>
+  <ol>
+    <li>Confirm SSID is broadcasting and clients can associate.</li>
+    <li>Check DHCP scope for VLAN 40 (available IPs?).</li>
+    <li>Check firewall policy: VLAN 40 should allow outbound internet only.</li>
+    <li>Check captive portal settings (if used).</li>
+    <li>Test with a known-good device; collect screenshot evidence.</li>
+  </ol>
+
+  <hr>
+
+  <h2>8) Maintenance Schedule (Placeholder)</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Frequency</th>
+        <th>Owner</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Firewall firmware review/patch</td>
+        <td>Monthly</td>
+        <td>[Name]</td>
+        <td>[Ticket + version screenshot]</td>
+      </tr>
+      <tr>
+        <td>Switch config backup</td>
+        <td>Weekly</td>
+        <td>[Name]</td>
+        <td>[Backup job log]</td>
+      </tr>
+      <tr>
+        <td>Review VPN accounts</td>
+        <td>Quarterly</td>
+        <td>[Name]</td>
+        <td>[Export list + approvals]</td>
+      </tr>
+      <tr>
+        <td>Guest Wi-Fi password rotation</td>
+        <td>Quarterly</td>
+        <td>[Name]</td>
+        <td>[Updated signage / email]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>9) Change Log</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Change</th>
+        <th>Ticket</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>[YYYY-MM-DD]</td>
+        <td>Initial version</td>
+        <td>[CHG-0000]</td>
+        <td>[Name]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <p><em>End of document.</em></p>
 
 </body>
 </html>
-
