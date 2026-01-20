@@ -83,7 +83,32 @@
             </ul>
         </section>
     </main>
+ <!-- Funny Complaint Form -->
+  <form action="/submit-complaint" method="POST">
 
+    <label>Your name (or alias):</label><br>
+    <input type="text" name="name" required>
+    <br><br>
+
+    <label>Email (optional):</label><br>
+    <input type="email" name="email">
+    <br><br>
+
+    <label>Complaint category:</label><br>
+    <select name="category" required>
+      <option value="">Pick one</option>
+      <option>Food Crimes</option>
+      <option>Tech Betrayal</option>
+      <option>People Being People</option>
+    </select>
+    <br><br>
+
+    <label>Your complaint:</label><br>
+    <textarea name="complaint" rows="5" required></textarea>
+    <br><br>
+
+    <button type="submit">Submit</button>
+  </form>
     <footer>
         <p>© 2026 Runbook Portfolio • Created for class purposes</p>
     </footer>
