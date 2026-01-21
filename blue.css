@@ -1,0 +1,71 @@
+/* Blue Style CSS */
+
+/* Body background */
+body {
+    background-color: #e6f3ff;
+    color: #003366;
+    font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #0066cc;
+}
+
+/* Links */
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #004499;
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004499;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #0066cc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #0066cc;
+    color: white;
+}
+
+/* Code blocks */
+code {
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Preformatted text */
+pre {
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
