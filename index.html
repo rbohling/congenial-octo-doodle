@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Storm&display=swap" rel="stylesheet">
+    <title>No Reason to Get Excited</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007acc;
+            color: #fff;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #007acc;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Inflated Mediocre Skills</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#interests">Interests</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>👋 Hi, I'm Rhetoric Bohling (Rhett)!</h2>
+            <p>System Administrator</p>
+        </section>
+
+        <section id="skills">
+            <h2>🛠️ Top Skills & Tech Stack</h2>
+            <ul>
+                <li><strong>Languages & Scripting:</strong> Python, PowerShell, Bash</li>
+                <li><strong>Tools:</strong> Wireshark, Excel</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>🌟 Favorite / Highlighted Projects</h2>
+            <p>ADRecon; Fedora; Ansible</p>
+        </section>
+
+        <section id="interests">
+            <h2>🚀 Interests</h2>
+            <ul>
+                <li>Jiu Jitsu</li>
+                <li>Hiking</li>
+                <li>Running</li>
+            </ul>
+
+            <h2>💡 Fun Fact / Favorite Quote</h2>
+            <blockquote>
+                "I like things to happen, and if they don't happen, I like to make them happen."<br>
+                — Winston Churchill
+            </blockquote>
+        </section>
+
+        <section id="contact">
+            <h2>Welcome</h2>
+            <p>This site showcases my skills in PowerShell and Linux terminal. You may submit a form below for any complaints.</p>
+            <p>To get started, lower your expectations, and take a big breath...</p>
+
+            <!-- Funny Complaint Form -->
+            <div style="text-align: center;">
+                <form action="/submit-complaint" method="POST">
+                    <label>Your name (or alias):</label><br>
+                    <input type="text" name="name" required>
+                    <br><br>
+
+                    <label>Email (optional):</label><br>
+                    <input type="email" name="email">
+                    <br><br>
+
+                    <label>Complaint category:</label><br>
+                    <select name="category" required>
+                        <option value="">Pick one</option>
+                        <option>Food Crimes</option>
+                        <option>Tech Betrayal</option>
+                        <option>People Being People</option>
+                    </select>
+                    <br><br>
+
+                    <label>Your complaint:</label><br>
+                    <textarea name="complaint" rows="5" required></textarea>
+                    <br><br>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 My Attempt at a Portfolio • Created for class purposes</p>
+    </footer>
+</body>
+</html>
