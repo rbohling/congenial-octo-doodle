@@ -521,7 +521,7 @@
                 const botMessageDiv = document.createElement('div');
                 botMessageDiv.className = 'message bot';
                 // Handle different response formats
-                const reply = data.body || data.reply || data.message || JSON.stringify(data);
+                const reply = data.answer || data.body || data.reply || data.message || JSON.stringify(data);
                 botMessageDiv.innerHTML = `<div class="message-bubble">${escapeHtml(typeof reply === 'string' ? reply : JSON.stringify(reply))}</div>`;
                 chatMessages.appendChild(botMessageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -539,8 +539,10 @@
                 // Check if it's a CORS issue (file:// protocol)
                 if (window.location.protocol === 'file:') {
                     errorMessageDiv.innerHTML = `<div class="message-bubble">⚠️ Error: Open this file through a local web server (not file://). Try: python -m http.server 8000 or npx http-server</div>`;
+                } else if (error.message.includes('NetworkError')) {
+                    errorMessageDiv.innerHTML = `<div class="message-bubble">⚠️ Network Error: Lambda endpoint might be down or unreachable. Check AWS console.</div>`;
                 } else {
-                    errorMessageDiv.innerHTML = `<div class="message-bubble">Sorry, I encountered an error: ${error.message}</div>`;
+                    errorMessageDiv.innerHTML = `<div class="message-bubble">Sorry, error: ${error.message}</div>`;
                 }
                 
                 chatMessages.appendChild(errorMessageDiv);
