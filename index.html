@@ -157,6 +157,186 @@
 
         /* Print friendly */
         @media print{.page{max-width:100%;margin:0;padding:0}nav.main-nav a{display:none}}
+
+        /* Chat Box Styles */
+        .chat-button{
+            position:fixed;
+            bottom:1.5rem;
+            right:1.5rem;
+            width:56px;
+            height:56px;
+            border-radius:50%;
+            background:var(--accent);
+            border:none;
+            cursor:pointer;
+            box-shadow:var(--shadow-strong);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:999;
+            transition:transform var(--transition), background-color var(--transition);
+            color:#fff;
+            font-size:1.5rem;
+        }
+
+        .chat-button:hover{
+            transform:scale(1.1);
+            background:#1d4ed8;
+        }
+
+        .chat-button:active{
+            transform:scale(0.95);
+        }
+
+        .chat-container{
+            position:fixed;
+            bottom:6rem;
+            right:1.5rem;
+            width:380px;
+            height:520px;
+            background:var(--surface);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow-strong);
+            display:flex;
+            flex-direction:column;
+            z-index:998;
+            opacity:0;
+            transform:translateY(10px);
+            pointer-events:none;
+            transition:opacity var(--transition), transform var(--transition);
+        }
+
+        .chat-container.open{
+            opacity:1;
+            transform:translateY(0);
+            pointer-events:auto;
+        }
+
+        .chat-header{
+            background:var(--accent);
+            color:#fff;
+            padding:1rem;
+            border-radius:var(--radius) var(--radius) 0 0;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .chat-header h3{
+            margin:0;
+            font-size:1rem;
+        }
+
+        .chat-close{
+            background:transparent;
+            border:none;
+            color:#fff;
+            cursor:pointer;
+            font-size:1.25rem;
+            padding:0;
+            width:32px;
+            height:32px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:transform var(--transition);
+        }
+
+        .chat-close:hover{
+            transform:rotate(90deg);
+        }
+
+        .chat-messages{
+            flex:1;
+            overflow-y:auto;
+            padding:1rem;
+            display:flex;
+            flex-direction:column;
+            gap:0.75rem;
+        }
+
+        .message{
+            display:flex;
+            gap:0.5rem;
+            animation:fadeInUp .3s both;
+        }
+
+        .message.user{
+            justify-content:flex-end;
+        }
+
+        .message-bubble{
+            max-width:70%;
+            padding:0.75rem 1rem;
+            border-radius:12px;
+            font-size:0.95rem;
+            line-height:1.4;
+        }
+
+        .message.user .message-bubble{
+            background:var(--accent);
+            color:#fff;
+            border-radius:12px 4px 12px 12px;
+        }
+
+        .message.bot .message-bubble{
+            background:#e5e7eb;
+            color:var(--text);
+            border-radius:4px 12px 12px 12px;
+        }
+
+        .chat-input-area{
+            padding:1rem;
+            border-top:1px solid #e5e7eb;
+            display:flex;
+            gap:0.5rem;
+        }
+
+        .chat-input{
+            flex:1;
+            border:1px solid #e5e7eb;
+            border-radius:8px;
+            padding:0.6rem 0.75rem;
+            font-family:var(--font-sans);
+            font-size:0.95rem;
+            transition:border-color var(--transition);
+        }
+
+        .chat-input:focus{
+            outline:none;
+            border-color:var(--accent);
+            box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+        }
+
+        .chat-send{
+            background:var(--accent);
+            border:none;
+            color:#fff;
+            border-radius:8px;
+            padding:0.6rem 0.75rem;
+            cursor:pointer;
+            transition:background-color var(--transition);
+            font-weight:600;
+        }
+
+        .chat-send:hover{
+            background:#1d4ed8;
+        }
+
+        .chat-send:active{
+            transform:scale(0.95);
+        }
+
+        /* Mobile responsive chat */
+        @media (max-width:520px){
+            .chat-container{
+                width:calc(100% - 1rem);
+                height:60vh;
+                bottom:5rem;
+                right:0.5rem;
+            }
+            .message-bubble{max-width:85%}
+        }
     </style>
 </head>
 <body>
@@ -247,5 +427,148 @@
             <div>© 2026 Rhetoric Bohling — Built with a simple design system</div>
         </footer>
     </div>
+
+    <!-- Chat Box -->
+    <button class="chat-button" id="chatButton" aria-label="Open chat">💬</button>
+    
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>Chat Assistant</h3>
+            <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-bubble">Hi there! How can I help you today?</div>
+            </div>
+        </div>
+        
+        <div class="chat-input-area">
+            <input 
+                type="text" 
+                class="chat-input" 
+                id="chatInput" 
+                placeholder="Type a message..." 
+                aria-label="Message input"
+            >
+            <button class="chat-send" id="chatSend" aria-label="Send message">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Chat Box Functionality
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        const chatClose = document.getElementById('chatClose');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Toggle chat open/close
+        chatButton.addEventListener('click', () => {
+            chatContainer.classList.toggle('open');
+            if (chatContainer.classList.contains('open')) {
+                chatInput.focus();
+            }
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatContainer.classList.remove('open');
+        });
+
+        // Handle message sending
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message user';
+            userMessageDiv.innerHTML = `<div class="message-bubble">${escapeHtml(message)}</div>`;
+            chatMessages.appendChild(userMessageDiv);
+
+            // Clear input
+            chatInput.value = '';
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message bot';
+            loadingDiv.id = 'loadingMessage';
+            loadingDiv.innerHTML = `<div class="message-bubble">Thinking...</div>`;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Send message to AWS Lambda function
+            fetch('https://qzhhqq94d6.execute-api.us-east-2.amazonaws.com/default/helloAwsLambda', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Remove loading indicator
+                const loading = document.getElementById('loadingMessage');
+                if (loading) loading.remove();
+
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'message bot';
+                // Handle different response formats
+                const reply = data.body || data.reply || data.message || JSON.stringify(data);
+                botMessageDiv.innerHTML = `<div class="message-bubble">${escapeHtml(typeof reply === 'string' ? reply : JSON.stringify(reply))}</div>`;
+                chatMessages.appendChild(botMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Lambda fetch error:', error);
+                
+                // Remove loading indicator
+                const loading = document.getElementById('loadingMessage');
+                if (loading) loading.remove();
+
+                const errorMessageDiv = document.createElement('div');
+                errorMessageDiv.className = 'message bot';
+                
+                // Check if it's a CORS issue (file:// protocol)
+                if (window.location.protocol === 'file:') {
+                    errorMessageDiv.innerHTML = `<div class="message-bubble">⚠️ Error: Open this file through a local web server (not file://). Try: python -m http.server 8000 or npx http-server</div>`;
+                } else {
+                    errorMessageDiv.innerHTML = `<div class="message-bubble">Sorry, I encountered an error: ${error.message}</div>`;
+                }
+                
+                chatMessages.appendChild(errorMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
+
+        // Send message on button click
+        chatSend.addEventListener('click', sendMessage);
+
+        // Send message on Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Utility function to escape HTML
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
 </body>
 </html>
