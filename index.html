@@ -504,7 +504,7 @@
             // Send message to AWS Lambda function
             fetch('https://qzhhqq94d6.execute-api.us-east-2.amazonaws.com/default/helloAwsLambda', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                // Keep this a simple CORS request to avoid failing OPTIONS preflight.
                 body: JSON.stringify({ message: message })
             })
             .then(response => {
