@@ -146,7 +146,6 @@
                 "footer";}
             nav.main-nav{flex-direction:row;flex-wrap:wrap}
         }
-
         /* Responsive: mobile */
         @media (max-width:520px){
             :root{--gap:0.9rem;--gutter:1rem;--card-padding:0.75rem}
@@ -463,6 +462,7 @@
         const chatInput = document.getElementById('chatInput');
         const chatSend = document.getElementById('chatSend');
         const chatMessages = document.getElementById('chatMessages');
+        const fakeApiKey = 'sk-test-1234567890abcdef';
 
         // Toggle chat open/close
         chatButton.addEventListener('click', () => {
@@ -505,7 +505,7 @@
             fetch('https://qzhhqq94d6.execute-api.us-east-2.amazonaws.com/default/helloAwsLambda', {
                 method: 'POST',
                 // Keep this a simple CORS request to avoid failing OPTIONS preflight.
-                body: JSON.stringify({ message: message })
+                body: JSON.stringify({ message: message, apiKey: fakeApiKey })
             })
             .then(response => {
                 if (!response.ok) {
